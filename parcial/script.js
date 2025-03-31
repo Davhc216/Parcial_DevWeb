@@ -33,22 +33,29 @@ async function convertir() {
     }
 
     try {
-        const respuesta = await fetch(`${urlAPI}?base=${de}&symbols=${a}`);
+        const respuesta = await fetch(urlAPI);
         const datos = await respuesta.json();
+
         if (!datos.success) {
             throw new Error(`Error en la API: ${datos.error?.info || "Clave API incorrecta"}`);
         }
 
-        const tasa = datos.rates[a];
+        const tasaDe = datos.rates[de]; // Valor de la moneda en EUR
+        const tasaA = datos.rates[a]; // Valor de la moneda en EUR
 
-        if (!tasa) {
-            throw new Error(`No se encontró la tasa de cambio para ${a}`);
+        if (!tasaDe || !tasaA) {
+            throw new Error(`No se encontró la tasa de cambio para ${de} o ${a}`);
         }
-        
-        document.getElementById("resultado").innerText = `${cantidad} ${de} = ${(cantidad * tasa).toFixed(2)} ${a}`;
+
+        // Conversión indirecta usando EUR
+        const tasaConversion = tasaA / tasaDe;
+        const resultado = (cantidad * tasaConversion).toFixed(2);
+
+        document.getElementById("resultado").innerText = `${cantidad} ${de} = ${resultado} ${a}`;
     } catch (error) {
         console.error("Error al convertir moneda:", error);
     }
 }
+
 
 document.addEventListener("DOMContentLoaded", cargarMonedas);
