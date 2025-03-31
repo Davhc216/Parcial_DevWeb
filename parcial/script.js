@@ -40,14 +40,13 @@ async function convertir() {
             throw new Error(`Error en la API: ${datos.error?.info || "Clave API incorrecta"}`);
         }
 
-        const tasaDe = datos.rates[de]; // Valor de la moneda en EUR
-        const tasaA = datos.rates[a]; // Valor de la moneda en EUR
-
+        const tasaDe = datos.rates[de];
+        const tasaA = datos.rates[a];
+        
         if (!tasaDe || !tasaA) {
             throw new Error(`No se encontró la tasa de cambio para ${de} o ${a}`);
         }
 
-        // Conversión indirecta usando EUR
         const tasaConversion = tasaA / tasaDe;
         const resultado = (cantidad * tasaConversion).toFixed(2);
 
