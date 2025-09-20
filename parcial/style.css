@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     margin:auto;
-    background-color: #311616;
+    background-color: #291d81;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,15 +28,15 @@ input, select, button {
 }
 
 button {
-    background-color: #a73128;
-    color: rgb(255, 255, 255);
+    background-color: #ffffff;
+    color: rgb(20, 11, 11);
     border: none;
     cursor: pointer;
     transition: background 0.2s;
 }
 
 button:hover {
-    background-color: #fa0000;
+    background-color: #200d0d;
 }
 
 #resultado {

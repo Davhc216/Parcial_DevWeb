@@ -42,10 +42,11 @@ async function convertir() {
 
         const tasaDe = datos.rates[de];
         const tasaA = datos.rates[a];
-        
+
         if (!tasaDe || !tasaA) {
             throw new Error(`No se encontró la tasa de cambio para ${de} o ${a}`);
         }
+
 
         const tasaConversion = tasaA / tasaDe;
         const resultado = (cantidad * tasaConversion).toFixed(2);
